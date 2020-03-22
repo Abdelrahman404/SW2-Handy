@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware(['auth'])->group(function (){
+
+    Route::get('/profile', 'ProfileController@getProfile')->name('profile');
+    Route::get('/portofolio', 'PortofolioController@getPortofolio')->name('portofolio');
+    Route::get('/issue', 'IssueController@issue')->name('issue');
+});
+
