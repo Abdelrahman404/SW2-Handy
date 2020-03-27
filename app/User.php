@@ -42,4 +42,9 @@ class User extends Authenticatable
 
         return $this->hasOne(Profile::class);
     }
+
+    public function businesstype(){
+
+        return $this->belongsTo(BusinessType::class);
+    }
 }
