@@ -86,6 +86,19 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Change Password</label>
+                                        <div class="col-lg-6">
+                                        <input class="form-control" id="password" type="password" name="password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label form-control-label">Confirm Password</label>
+                                        <div class="col-lg-6">
+                                        <input class="form-control" id="confirm_password" type="password" onkeyup="check()" name="new_password">
+                                        <span classd="alert alert-danger" id='message'></span>
+                                        </div>
+                                    </div>
                                     {{-- <div class="form-group row">
                                         <label class="col-lg-3 col-form-label form-control-label">Username</label>
                                         <div class="col-lg-9">
@@ -121,3 +134,16 @@
         
     </div>
 @endsection
+<script>
+
+var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'matching';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'not matching';
+  }
+}
+</script>

@@ -19,7 +19,7 @@ class ProfileController extends Controller
 
     public function update(Request $request){
 
-        $profile = $request->only(['name','about', 'phone_number', 'skills','email','area']);
+        $profile = $request->only(['name','about', 'phone_number', 'skills','email','area', 'password']);
         
         request()->validate([
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -51,7 +51,9 @@ class ProfileController extends Controller
         $userID = auth()->user()->id;
 
         User ::where('id', $userID)->update(['name' => $profile['name']]);
-        
+    
+        if ($profile['password']) User::where('id', $userID)->update(['password' => bcrypt($profile['password'])]); 
+
         Profile::where('user_id', $userID)->update([
 
             'about' => $profile['about'],
