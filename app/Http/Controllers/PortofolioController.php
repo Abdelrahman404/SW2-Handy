@@ -21,9 +21,6 @@ class PortofolioController extends Controller
 
     public function store(Request $request){
 
-        request()->validate([
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
 
         request()->validate([
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -66,5 +63,57 @@ class PortofolioController extends Controller
         ]);
 
         return redirect('/portofolio');
+    }
+
+    public function edit($id){
+
+        $project = Portofolio::find($id);
+        
+        return view('portofolio.edit')->with('project', $project);
+    }
+
+    public function update(Request $request){
+
+        request()->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+
+            // Get file name with extension 
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+
+            //Get just filename 
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+
+            // Get just ext 
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            // Filename to store 
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension; 
+            
+            // Upload Image  
+            $path = $request->file('image')->storeAs('public/portfolio', $fileNameToStore);
+
+
+            $project = Portofolio::where('id', $request->id)->update([
+
+                'title' => $request->title,
+                'description' => $request->description,
+                'image' => $fileNameToStore
+            ]);
+            
+            return redirect('/portofolio');
+        }else{
+
+            $project = Portofolio::where('id', $request->id)->update([
+
+                'title' => $request->title,
+                'description' => $request->description
+            ]);
+
+            return redirect('/portofolio');
+        }
+   
     }
 }
