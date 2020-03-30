@@ -23,7 +23,14 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/profile', 'ProfileController@getProfile')->name('profile');
     Route::post('/profile/update', 'ProfileController@update')->name('profile.update');
+
+
     Route::get('/portofolio', 'PortofolioController@getPortofolio')->name('portofolio');
+    Route::get('/add-portofolio', 'PortofolioController@addPortofolio')->name('portofolio.add');
+    Route::post('/add-portofolio', 'PortofolioController@store')->name('portofolio.store');
+
+
     Route::get('/issue', 'IssueController@issue')->name('issue');
+    
 });
 

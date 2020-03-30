@@ -12,8 +12,26 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-
-                        Portfolio
+                        @if ($projects)
+                        <div class="row">
+                            @foreach ($projects as $project)
+                            <div class="col-6">
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" src="/storage/portfolio/{{ $project->image }}" alt="Card image cap">
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{ $project->title}}</h5>
+                                      <p class="card-text">{{ $project->description}}</p>
+                                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                  </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        @else
+                            <p>
+                            You have no projects yet, <a href="{{ route('portofolio.add')}}">add one?</a>
+                            </p>
+                        @endif
                     </div>
                 </div>
             </div>

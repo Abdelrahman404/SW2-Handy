@@ -42,6 +42,11 @@ class User extends Authenticatable
 
         return $this->hasOne(Profile::class);
     }
+    
+    public function portofolio(){
+
+        return $this->hasMany(Portofolio::class);
+    }
 
     public function businesstype(){
 
