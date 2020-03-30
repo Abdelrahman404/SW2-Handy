@@ -21,7 +21,7 @@
                                     <div class="card-body">
                                       <h5 class="card-title">{{ $project->title}}</h5>
                                       <p class="card-text">{{ $project->description}}</p>
-                                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                                      <a href="{{ route('portofolio.edit', $project->id)}}">edit</a>
                                     </div>
                                   </div>
                             </div>
