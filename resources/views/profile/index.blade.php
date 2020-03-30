@@ -25,6 +25,7 @@
                         @endif
                             <div class="tab-pane" id="edit">
                                 <h4 class="m-y-2">Edit Profile</h4>
+                                <a href="{{ route('portofolio.add')}}">Update your portofolio</a>
                                 <form role="form" method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <div class="col-lg-4 pull-lg-8 text-xs-center">
