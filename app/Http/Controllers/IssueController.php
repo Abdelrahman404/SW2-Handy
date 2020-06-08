@@ -10,4 +10,15 @@ class IssueController extends Controller
 
         return view('issue.index');
     }
+    public function add(){
+
+        return view('issue.add');
+    }
+
+    public function save(Request $request){
+
+        return $request;
+    }
 }
+
+
