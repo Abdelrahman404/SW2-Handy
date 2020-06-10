@@ -28,6 +28,20 @@ class IssueController extends Controller
         return redirect()->back()->with('success', 'Your issue reported successfully!');
 
     }
+
+    public function reportUser($request){
+
+        $attrbuites = $request->only(['userID', 'title','messageBody']);
+        
+        Issue::create([
+            'user_id', $attrbuites['userID'],
+            'title' => $attrbuites['title'],
+            'description' => $attrbuites['description'],
+            ]);
+
+            return redirect()->back()->with('success', 'Your issue reported successfully!');
+
+    }
 }
 
 
