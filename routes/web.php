@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function (){
 
 
     Route::get('/issue', 'IssueController@issue')->name('issue');
-    
+    Route::get('/issues/add', 'IssueController@add')->name('issue.add');
+    Route::post('/issues/save','IssueController@save')->name('issue.save');
 });
 
